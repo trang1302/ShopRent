@@ -13,7 +13,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ItemServiceImpl implements ItemService {
 
-    private ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
     @Override
     public Item createItem(Item item) {
@@ -23,7 +23,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Item getItemById(Long itemId) {
         Optional<Item> optionalItem = itemRepository.findById(itemId);
-        return optionalItem.get();
+        return optionalItem.orElse(null);
     }
 
     @Override
@@ -33,15 +33,22 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item updateItem(Item item) {
-        Item existingItem = itemRepository.findById(item.getId()).get();
-        existingItem.setName(item.getName());
-        existingItem.setAmount(item.getAmount());
-        Item updatedItem = itemRepository.save(existingItem);
-        return updatedItem;
+        Item existingItem = itemRepository.findById(item.getId()).orElse(null);
+        if (existingItem != null) {
+            existingItem.setName(item.getName());
+            existingItem.setAmount(item.getAmount());
+            return itemRepository.save(existingItem);
+        }
+        return null;
     }
 
     @Override
     public void deleteItem(Long itemId) {
         itemRepository.deleteById(itemId);
+    }
+
+    @Override
+    public List<Item> searchItemsByName(String query) {
+        return itemRepository.searchByNameContaining(query);
     }
 }
