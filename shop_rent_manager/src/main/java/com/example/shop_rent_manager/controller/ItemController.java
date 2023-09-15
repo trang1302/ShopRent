@@ -3,7 +3,6 @@ package com.example.shop_rent_manager.controller;
 import com.example.shop_rent_manager.model.Item;
 import com.example.shop_rent_manager.service.ItemService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -70,10 +69,6 @@ public class ItemController {
         return new ResponseEntity<>("Item successfully deleted!", HttpStatus.OK);
     }
 
-    // Build search items by content REST API
-    @GetMapping("/search")
-    public ResponseEntity<List<Item>> searchItemsByContent(@RequestParam("content") String content) {
-        List<Item> items = itemService.searchItemsByContent(content);
-        return new ResponseEntity<>(items, HttpStatus.OK);
-    }
+
+
 }
