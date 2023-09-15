@@ -39,7 +39,10 @@ public class ItemServiceImpl implements ItemService {
         Item updatedItem = itemRepository.save(existingItem);
         return updatedItem;
     }
-
+    @Override
+    public List<Item> searchItemsByContent(String content) {
+        return itemRepository.findByContent(content);
+    }
     @Override
     public void deleteItem(Long itemId) {
         itemRepository.deleteById(itemId);
