@@ -36,7 +36,7 @@ public class ItemServiceImpl implements ItemService {
         Item existingItem = itemRepository.findById(item.getId()).orElse(null);
         if (existingItem != null) {
             existingItem.setName(item.getName());
-            existingItem.setAmount(item.getAmount());
+            existingItem.setAmount_left(item.getAmount_left());
             return itemRepository.save(existingItem);
         }
         return null;

@@ -19,7 +19,7 @@ public class Item {
 
     private String name;
 
-    private String amount;
+    private String amount_left;
 
     @ManyToMany(mappedBy = "items")
     private List<Repo> repositories;

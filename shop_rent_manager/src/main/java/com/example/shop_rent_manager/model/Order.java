@@ -19,6 +19,10 @@ public class Order {
 
     private String date;
 
+    private int amount_order;
+
+
+
 
     @ManyToMany
     @JoinTable(
