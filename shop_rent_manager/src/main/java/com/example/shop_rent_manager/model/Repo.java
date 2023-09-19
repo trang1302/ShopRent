@@ -1,10 +1,11 @@
 package com.example.shop_rent_manager.model;
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -35,6 +36,7 @@ public class Repo {
             name = "repository_item",
             joinColumns = @JoinColumn(name = "repository_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id")
+
     )
     private List<Item> items;
 

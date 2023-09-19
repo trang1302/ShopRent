@@ -1,13 +1,15 @@
 package com.example.shop_rent_manager.repository;
 
 import com.example.shop_rent_manager.model.Item;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-@Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
-    List<Item> searchByNameContaining(String query);
+    @Query(value = "SELECT * FROM items " +
+            "INNER JOIN order_item ON items.id = order_item.item_id " +
+            "WHERE items.name LIKE %:keyword%", nativeQuery = true)
+    public List<Item> search(@Param("keyword") String keyword);
 }
