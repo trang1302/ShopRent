@@ -1,7 +1,7 @@
-package com.example.shop_rent_manager.controller;
+package com.example.shop_rent_manager.Controller;
 
-import com.example.shop_rent_manager.model.Item;
-import com.example.shop_rent_manager.service.ItemService;
+import com.example.shop_rent_manager.model.Order;
+import com.example.shop_rent_manager.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +14,10 @@ import java.util.List;
 @RestController
 public class AppController {
   @Autowired
-  private ItemService itemService;
+  private OrderService orderService;
   @GetMapping("/")
-  public ResponseEntity<List<Item>> getItems(@RequestParam(required = false) String keyword){
-      List<Item> itemList = itemService.listAll(keyword);
-      return new ResponseEntity<>(itemList, HttpStatus.OK);
+  public ResponseEntity<List<Order>> getOrders(@RequestParam(required = false) String keyword){
+      List<Order> orderList = orderService.listAll(keyword);
+      return new ResponseEntity<>(orderList, HttpStatus.OK);
   }
 }
