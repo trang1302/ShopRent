@@ -1,6 +1,7 @@
 package com.example.shop_rent_manager.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,9 +24,11 @@ public class Item {
     private String amount_left;
 
     @ManyToMany(mappedBy = "items")
+    @JsonIgnore
     private List<Repo> repositories;
 
     @ManyToMany(mappedBy = "items")
+    @JsonIgnore
     private List<Order> orders;
 
 

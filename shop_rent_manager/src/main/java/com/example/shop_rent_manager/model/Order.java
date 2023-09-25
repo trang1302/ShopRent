@@ -1,6 +1,7 @@
 package com.example.shop_rent_manager.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,12 +26,14 @@ public class Order {
 
 
 
+
     @ManyToMany
     @JoinTable(
             name = "order_item",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id")
     )
+    @JsonIgnore
     private List<Item> items;
 
     @ManyToOne
@@ -38,6 +41,7 @@ public class Order {
             name = "customer_id",
             referencedColumnName = "id"
     )
+    @JsonIgnore
     private Customer customer;
 
 }

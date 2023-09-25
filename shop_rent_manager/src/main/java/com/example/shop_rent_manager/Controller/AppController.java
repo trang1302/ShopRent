@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,9 +16,21 @@ import java.util.List;
 public class AppController {
   @Autowired
   private OrderService orderService;
+
   @GetMapping("/")
   public ResponseEntity<List<Order>> getOrders(@RequestParam(required = false) String keyword){
       List<Order> orderList = orderService.listAll(keyword);
       return new ResponseEntity<>(orderList, HttpStatus.OK);
+  }
+//  @GetMapping("/list/{maxAmount}")
+//    public ResponseEntity<List<Order>> findOrderMaxAmount(@PathVariable("maxAmount") int maxAmount){
+//      List<Order> orderListMax = orderService.OrderMaxAmount(maxAmount);
+//      return new ResponseEntity<>(orderListMax, HttpStatus.OK);
+//  }
+
+  @GetMapping("/search")
+  public ResponseEntity<List<Order>> SearchItem(@RequestParam(required=false) String keyword){
+    List<Order> orderssList = orderService.searchItemByName(keyword);
+    return new ResponseEntity<>(orderssList, HttpStatus.OK);
   }
 }
