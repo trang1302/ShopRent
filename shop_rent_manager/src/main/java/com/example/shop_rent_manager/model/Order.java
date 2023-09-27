@@ -33,7 +33,7 @@ public class Order {
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id")
     )
-    @JsonIgnore
+
     private List<Item> items;
 
     @ManyToOne

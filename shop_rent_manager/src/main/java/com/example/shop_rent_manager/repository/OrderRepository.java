@@ -9,9 +9,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    @Query(value = "SELECT * FROM items " +
-            "            INNER JOIN order_item ON items.id = order_item.item_id  " +
-            "            INNER JOIN orders ON order_item.order_id = orders.id  " +
-            "            WHERE items.name LIKE %:keyword%", nativeQuery = true)
+    @Query(value = "select * from orders od \n" +
+            "join order_item oi on od.id = oi.order_id \n" +
+            "join items it on it.id = oi.item_id \n" +
+            "where it.name LIKE %:keyword%", nativeQuery = true)
     public List<Order> search(@Param("keyword") String keyword);
 }
