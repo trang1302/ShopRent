@@ -1,7 +1,10 @@
 package com.example.shop_rent_manager.Controller;
 
 import com.example.shop_rent_manager.model.Order;
+import com.example.shop_rent_manager.model.User;
+import com.example.shop_rent_manager.repository.UserRepository;
 import com.example.shop_rent_manager.service.OrderService;
+import com.example.shop_rent_manager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,5 +35,12 @@ public class AppController {
   public ResponseEntity<List<Order>> SearchItem(@RequestParam(required=false) String keyword){
     List<Order> orderssList = orderService.searchItemByName(keyword);
     return new ResponseEntity<>(orderssList, HttpStatus.OK);
+  }
+  @Autowired
+  UserService userService;
+  @GetMapping("/searchUserByShop")
+  public ResponseEntity<List<User>> SearchUserByShop(@RequestParam(required=false) String keyword){
+    List<User> UserList = userService.listAllUser(keyword);
+    return new ResponseEntity<>(UserList, HttpStatus.OK);
   }
 }

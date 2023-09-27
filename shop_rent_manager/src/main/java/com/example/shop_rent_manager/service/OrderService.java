@@ -13,16 +13,17 @@ import java.util.List;
 
 @Service
 public class OrderService {
+
+
   @Autowired
   private OrderRepository orderRepository;
-  @Autowired
-  private EntityManager entityManager;
   public List<Order> listAll(String keyword) {
       if(keyword != null){
           return orderRepository.search(keyword);
       } return null;
   }
-
+  @Autowired
+  private EntityManager entityManager;
 public List<Order> searchItemByName(String keyword) {
     CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
     CriteriaQuery<Order> criteriaQuery = criteriaBuilder.createQuery(Order.class);
