@@ -25,7 +25,7 @@ public class Shop {
     
     @ManyToMany
     @JoinTable(
-        name = "shop_user",
+        name = "user_shop",
         joinColumns = @JoinColumn(name = "shop_id"),
         inverseJoinColumns = @JoinColumn(name = "user_id")
     )
