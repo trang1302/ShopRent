@@ -1,6 +1,8 @@
 package com.example.shop_rent_manager.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,15 +25,12 @@ public class Shop {
     private String location;
 
     
-    @ManyToMany
-    @JoinTable(
-        name = "user_shop",
-        joinColumns = @JoinColumn(name = "shop_id"),
-        inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
+    @ManyToMany(mappedBy = "shops")
+    @JsonIgnore
     private List<User> users;
     
-    @OneToMany(mappedBy = "shop")
+    @OneToMany
+    @JsonIgnore
     private List<Repo> repositories;
 
 
