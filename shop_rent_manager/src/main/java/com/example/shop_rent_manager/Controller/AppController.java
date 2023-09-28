@@ -8,10 +8,7 @@ import com.example.shop_rent_manager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,4 +40,9 @@ public class AppController {
     List<User> UserList = userService.listAllUser(keyword);
     return new ResponseEntity<>(UserList, HttpStatus.OK);
   }
+  @PostMapping ("/add")
+  public ResponseEntity<User> addUsers(@RequestBody  User user){
+  User newUser = userService.addUser(user);
+  return new ResponseEntity<>(newUser, HttpStatus.OK);
+    }
 }

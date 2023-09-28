@@ -16,4 +16,10 @@ public class UserService {
           return userRepository.searchUserByShop(keyword);
       } return null;
   }
+    public User addUser(User user) {
+        if (user.getEmail() != null && user.getName() != null && user.getPassword() != null) {
+            userRepository.addNewUser(user.getEmail(), user.getName(), user.getPassword());
+        };
+        return userRepository.getUser(user.getName());
+    }
 }
