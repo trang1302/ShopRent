@@ -29,8 +29,8 @@ public class AppController {
 //  }
 
   @GetMapping("/search")
-  public ResponseEntity<List<Order>> SearchItem(@RequestParam(required=false) String keyword){
-    List<Order> orderssList = orderService.searchItemByName(keyword);
+  public ResponseEntity<List<Order>> SearchItem(@RequestParam(required=false) String keyword, int startPosition, int pageSize){
+    List<Order> orderssList = orderService.searchOrderByNameItem(keyword, startPosition, pageSize);
     return new ResponseEntity<>(orderssList, HttpStatus.OK);
   }
   @Autowired
