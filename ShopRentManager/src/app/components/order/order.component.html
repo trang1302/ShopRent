@@ -4,6 +4,7 @@
       <th>ID</th>
       <th>Date</th>
       <th>Amount order</th>
+      <th>Item</th>
     </tr>
   </thead>
 
@@ -12,6 +13,29 @@
       <td>{{item.id}}</td>
       <td>{{item.date}}</td>
       <td>{{item.amount_order}}</td>
+      <td>
+        <button (click)="showDetailOrder(item.id)">
+          Details
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Amount order</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.amount_left}}</td>
     </tr>
   </tbody>
 </table>
