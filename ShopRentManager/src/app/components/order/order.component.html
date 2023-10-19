@@ -14,14 +14,12 @@
       <td>{{item.date}}</td>
       <td>{{item.amount_order}}</td>
       <td>
-        <button (click)="showDetailOrder(item.id)">
-          Details
-        </button>
+        <a [routerLink]="'/item/' + item.id" (click)="showDetailOrder(item.id)">Details</a>
       </td>
     </tr>
   </tbody>
 </table>
-
+<!-- 
 <table>
   <thead>
     <tr>
@@ -38,4 +36,4 @@
       <td>{{item.amount_left}}</td>
     </tr>
   </tbody>
-</table>
+</table> -->

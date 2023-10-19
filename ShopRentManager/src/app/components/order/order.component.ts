@@ -4,6 +4,7 @@ import { Order } from 'src/app/model/order.model';
 import { ItemsService } from 'src/app/service/items.service';
 import { OrderService } from 'src/app/service/order.service';
 
+
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -12,25 +13,26 @@ import { OrderService } from 'src/app/service/order.service';
 export class OrderComponent {
   data?: Order[];
   items?: Items[];
-  orderIdSelected: any; 
+  orderIdSelected: any;
 
-  constructor(private orderService: OrderService,
+  constructor(
+    private orderService: OrderService,
     private itemsService: ItemsService) { }
 
   ngOnInit(): void {
     this.getAll();
   }
 
-  getAll(){
-    this.orderService.getAll().subscribe((res:any)=>{
+  getAll() {
+    this.orderService.getAll().subscribe((res: any) => {
       this.data = res
     })
   }
 
-  showDetailOrder(orderId: any){
+  showDetailOrder(orderId: any) {
     this.orderIdSelected = orderId;
-    this.itemsService.getAll(orderId).subscribe((res: any) =>{
-      this.items = res
+    this.itemsService.getAll(orderId).subscribe((res: any) => {
+    this.items = res
     })
   }
 }
